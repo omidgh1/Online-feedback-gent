@@ -3,7 +3,7 @@ import datetime
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 from utils.Mongo import db_update, db_data
-from utils.form_analysis import analysis_radio
+from utils.analysis import analysis_radio
 
 st.set_option('client.showErrorDetails', False)
 st.set_option('deprecation.showPyplotGlobalUse', False)

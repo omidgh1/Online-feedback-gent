@@ -1,8 +1,10 @@
 import streamlit as st
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
-from utils.Mongo import db_update, db_data
-from utils.form_analysis import create_plots
+from utils.Mongo import db_data
+from utils.analysis import create_plots, nlp_plots
+from utils.nlp_tech import nlp_analysis
+import nltk
 
 st.set_option('client.showErrorDetails', False)
 st.set_option('deprecation.showPyplotGlobalUse', False)
@@ -13,6 +15,10 @@ def get_mongo_client():
     password = "Qu10mxMGOsFx4lHb"
     uri = f"mongodb+srv://{user_name}:{password}@cluster0.sry1dls.mongodb.net/?retryWrites=true&w=majority"
     client = MongoClient(uri, server_api=ServerApi('1'))
+
+    nltk.download('punkt')
+    nltk.download('stopwords')
+    nltk.download('vader_lexicon')
     return client
 
 client = get_mongo_client()
@@ -28,5 +34,12 @@ sector = st.radio('which place do you want to see its analysis?',options=['Citad
 st.title(sector)
 if sector == 'Gravensteen':
     create_plots(df=museum,var='how_hear',section=sector)
+    df_museum, wordcloud_museum = nlp_analysis(df=museum)
+    st.title('Natural Language Processing')
+    nlp_plots(wordcloud_museum, df_museum)
 elif sector == 'Citadelpark':
     create_plots(df=park,var='how_often',section=sector)
+    df_park, wordcloud_park = nlp_analysis(df=park)
+    st.title('Natural Language Processing')
+    nlp_plots(wordcloud_park, df_park)
+

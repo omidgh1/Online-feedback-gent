@@ -81,3 +81,22 @@ def create_plots(df,var,section):
     # Plot 4: Time Series Plot
     with col2:
         time_plot(df, section)
+
+def nlp_plots(wordcloud,df):
+    col1, col2 = st.columns(2)
+    with col1:
+        col1.title('the Most written words')
+        plt.figure(figsize=(10, 6))
+        plt.imshow(wordcloud, interpolation='bilinear')
+        plt.axis('off')
+        st.pyplot()
+    with col2:
+        sentiment_counts = df['sentiment_label'].value_counts()
+        col2.title('Sentiment Analysis')
+        plt.figure(figsize=(8, 5))
+        sentiment_counts.plot(kind='bar', color=['green', 'red', 'blue'])
+        plt.title('Sentiment Analysis')
+        plt.xlabel('Sentiment Label')
+        plt.ylabel('Frequency')
+        plt.xticks(rotation=0)
+        st.pyplot()
