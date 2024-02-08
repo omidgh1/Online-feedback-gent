@@ -19,8 +19,3 @@ def db_data(collection):
     dataset = pd.DataFrame(list(collection.find({})))
     return dataset
 
-
-#data = {'section': 'Citadelpark', 'how_often': 'Daily', 'activity': 'Boating', 'score': '5 (Excellent)', 'idea': 'the lake is very beautiful',
-#            'time': datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S")}
-#db_update(data)
-
