@@ -85,14 +85,14 @@ def create_plots(df,var,section):
 def nlp_plots(wordcloud,df):
     col1, col2 = st.columns(2)
     with col1:
-        col1.title('the Most written words')
+        col1.header('the Most written words')
         plt.figure(figsize=(10, 6))
         plt.imshow(wordcloud, interpolation='bilinear')
         plt.axis('off')
         st.pyplot()
     with col2:
         sentiment_counts = df['sentiment_label'].value_counts()
-        col2.title('Sentiment Analysis')
+        col2.header('Sentiment Analysis')
         plt.figure(figsize=(8, 5))
         sentiment_counts.plot(kind='bar', color=['green', 'red', 'blue'])
         plt.title('Sentiment Analysis')
