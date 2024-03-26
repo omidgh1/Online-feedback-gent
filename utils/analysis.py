@@ -79,8 +79,8 @@ def create_plots(df,var,section):
         pie_chart_act(df, var, section)
 
     # Plot 4: Time Series Plot
-    with col2:
-        time_plot(df, section)
+    #with col2:
+        #time_plot(df, section)
 
 def nlp_plots(wordcloud,df):
     col1, col2 = st.columns(2)
