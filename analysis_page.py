@@ -30,14 +30,14 @@ park = data[data['section']=='Citadelpark'][['section','how_often','activity','s
 
 
 st.header("Analysis Dashboard")
-sector = st.radio('which place do you want to see its analysis?',options=['Citadelpark', 'Gravensteen'])
+sector = st.radio('which place do you want to see its analysis?',options=['Minnewater Park', 'Groeninge Museum'])
 st.title(sector)
-if sector == 'Gravensteen':
+if sector == 'Groeninge Museum':
     create_plots(df=museum,var='how_hear',section=sector)
     df_museum, wordcloud_museum = nlp_analysis(df=museum)
     st.title('Natural Language Processing')
     nlp_plots(wordcloud_museum, df_museum)
-elif sector == 'Citadelpark':
+elif sector == 'Minnewater Park':
     create_plots(df=park,var='how_often',section=sector)
     df_park, wordcloud_park = nlp_analysis(df=park)
     st.title('Natural Language Processing')

@@ -23,9 +23,9 @@ data = db_data(collection)
 museum = data[data['section']=='Gravensteen'][['section','how_hear','motivation','score','idea','time']]
 
 st.header("Submit Form Data")
-st.title("Gravensteen")
-st.image('Gravensteen.jpg')
-how_hear = st.radio('How did you hear about Gravensteen?',
+st.title("Groeninge Museum")
+st.image('Groeninge Museum.jpg')
+how_hear = st.radio('How did you hear about Groeninge Museum?',
                     options=['Online advertisement','Social media', 'Word of mouth', 'Local events'])
 motivation = st.radio('What motivated you to visit',
                       options=['Interest in the specific exhibits', 'Recommendation from friends or family',
@@ -35,12 +35,12 @@ score = st.radio('How satisfied were you with the ticketing process',
 idea = st.text_input('Write your suggestion to improve the quality', max_chars=100)
 
 if st.button("Submit"):
-    data = {'section': 'Gravensteen', 'how_hear': how_hear, 'motivation': motivation, 'score': score, 'idea': idea,
+    data = {'section': 'Groeninge Museum', 'how_hear': how_hear, 'motivation': motivation, 'score': score, 'idea': idea,
             'time': datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S")}
     db_update(collection,data)
     st.success("Form submitted successfully!")
-    how_hear_result = analysis_radio(museum, 'how_hear', 'Gravensteen', how_hear)
-    motivation_result = analysis_radio(museum, 'motivation', 'Gravensteen', motivation)
+    how_hear_result = analysis_radio(museum, 'how_hear', 'Groeninge Museum', how_hear)
+    motivation_result = analysis_radio(museum, 'motivation', 'Groeninge Museum', motivation)
     st.markdown(how_hear_result)
     st.markdown(motivation_result)
 

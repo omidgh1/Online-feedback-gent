@@ -23,24 +23,24 @@ data = db_data(collection)
 park = data[data['section']=='Citadelpark'][['section','how_often','activity','score','idea','time']]
 
 st.header("Submit Form Data")
-st.title("Citadelpark")
-st.image('Citadelpark.jpg')
-how_often = st.radio('How often do you visit Citadelpark?',
+st.title("Minnewater Park")
+st.image('Minnewater Park.jpg')
+how_often = st.radio('How often do you visit Minnewater Park?',
                      options=['Daily', 'Weekly','Monthly', 'Rarely','Never visited'])
-score = st.radio('On a scale of 1 to 5, how would you rate the cleanliness of Citadelpark?',
+score = st.radio('On a scale of 1 to 5, how would you rate the cleanliness of Minnewater Park?',
                      options=['1 (Poor)', '2 (Fair)', '3 (Average)', '4 (Good)', '5 (Excellent)'])
-activity = st.radio('What activities do you typically engage in while at Citadelpark? (Check all that apply)',
+activity = st.radio('What activities do you typically engage in while at Minnewater Park? (Check all that apply)',
                      options=['Walking/Jogging', 'Picnicking', 'Boating', 'Birdwatching', 'Photography',
                               'Attending events/festivals'])
 idea = st.text_input('Write your suggestion to improve the quality', max_chars=100)
 
 if st.button("Submit"):
-    data = {'section': 'Citadelpark', 'how_often': how_often, 'activity': activity, 'score': score, 'idea': idea,
+    data = {'section': 'Minnewater Park', 'how_often': how_often, 'activity': activity, 'score': score, 'idea': idea,
             'time': datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S")}
     db_update(collection,data)
     st.success("Form submitted successfully!")
-    how_often_result = analysis_radio(park, 'how_often', 'Citadelpark', how_often)
-    activity_result = analysis_radio(park, 'activity', 'Citadelpark', activity)
+    how_often_result = analysis_radio(park, 'how_often', 'Minnewater Park', how_often)
+    activity_result = analysis_radio(park, 'activity', 'Minnewater Park', activity)
     st.markdown(how_often_result)
     st.markdown(activity_result)
 
